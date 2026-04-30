@@ -1,22 +1,35 @@
 import { getToken } from "../utils/auth";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL || "https://authx-secure-auth-system-production.up.railway.app";
+
+// Helper to parse response safely
+const handleResponse = async (response) => {
+  let data;
+
+  try {
+    data = await response.json();
+  } catch {
+    data = {};
+  }
+
+  if (!response.ok) {
+    throw new Error(data.error || data.message || "Something went wrong");
+  }
+
+  return data;
+};
 
 // LOGIN
-export const loginUser = async (data) => {
+export const loginUser = async (credentials) => {
   const response = await fetch(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(credentials),
   });
 
-  if (!response.ok) {
-    throw new Error("Invalid credentials");
-  }
-
-  return response.json();
+  return handleResponse(response);
 };
 
 // REGISTER
@@ -29,12 +42,7 @@ export const registerUser = async (data) => {
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
-    const err = await response.text();
-    throw new Error(err || "Registration failed");
-  }
-
-  return response.json();
+  return handleResponse(response);
 };
 
 // GET USERS (ADMIN)
@@ -51,11 +59,7 @@ export const getAllUsers = async () => {
     return;
   }
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch users");
-  }
-
-  return response.json();
+  return handleResponse(response);
 };
 
 // DELETE USER
@@ -73,13 +77,7 @@ export const deleteUser = async (id) => {
     return;
   }
 
-  const data = await response.json().catch(() => ({}));
-
-  if (!response.ok) {
-    throw new Error(data.error || "Delete failed");
-  }
-
-  return data;
+  return handleResponse(response);
 };
 
 // CHANGE PASSWORD
@@ -99,11 +97,5 @@ export const changePassword = async (data) => {
     return;
   }
 
-  const result = await response.json().catch(() => ({}));
-
-  if (!response.ok) {
-    throw new Error(result.message || "Password change failed");
-  }
-
-  return result;
+  return handleResponse(response);
 };
