@@ -1,16 +1,133 @@
-# React + Vite
+# 🔐 AuthX - Secure Authentication System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack authentication system with JWT-based security, role-based access control, and an admin management dashboard.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Demo
 
-## React Compiler
+* 🌐 Frontend: https://authx-frontend.vercel.app
+* ⚙️ Backend: https://authx-secure-auth-system-production.up.railway.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🔐 Authentication
+
+* User Registration
+* User Login with JWT
+* Secure password hashing using BCrypt
+* Token-based authentication
+
+### 🧑‍💼 Role-Based Access
+
+* USER & ADMIN roles
+* Protected routes
+* Admin-only endpoints
+
+### 🛠 Admin Dashboard
+
+* View all users
+* Delete users
+* User count statistics
+
+### ⚙️ Backend
+
+* Spring Boot (Java)
+* Spring Security
+* JWT Authentication
+* Global Exception Handling
+* MySQL (Railway cloud database)
+
+### 🎨 Frontend
+
+* React + Vite
+* Tailwind CSS
+* Protected routing
+* REST API integration
+
+---
+
+## 🗄️ Tech Stack
+
+* **Frontend:** React, Vite, Tailwind CSS
+* **Backend:** Spring Boot, Spring Security, JWT
+* **Database:** MySQL (Railway)
+* **Deployment:** Vercel (Frontend), Railway (Backend)
+
+---
+
+## 🔑 API Endpoints
+
+### Auth
+
+* `POST /auth/register`
+* `POST /auth/login`
+* `POST /auth/change-password`
+
+### Admin
+
+* `GET /admin/users`
+* `DELETE /admin/user/{id}`
+
+---
+
+## ⚙️ Environment Variables
+
+### Backend (Railway)
+
+* `DB_URL`
+* `DB_USERNAME`
+* `DB_PASSWORD`
+* `JWT_SECRET`
+
+### Frontend (.env)
+
+```env
+VITE_API_URL=https://authx-secure-auth-system-production.up.railway.app
+```
+
+---
+
+## 🧪 Run Locally
+
+### Backend
+
+```bash
+mvn spring-boot:run
+```
+
+### Frontend
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 🔒 Security Highlights
+
+* JWT-based authentication
+* Password hashing using BCrypt
+* Role-based authorization
+* Stateless session management
+* Centralized exception handling
+
+---
+
+## 📌 Future Improvements
+
+* Refresh tokens
+* Email verification
+* Password reset functionality
+* Role management UI
+* Audit logs
+
+---
+
+## 👨‍💻 Author
+
+**Anil Chakravarthi Meesala**
+
